@@ -1,0 +1,32 @@
+.configMain {
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.15);
+  border-radius: 8px;
+
+  height: 488px;
+  width: 350px;
+
+  padding: 30px;
+}
+
+h1 {
+  /*font-family: AvenirNext-DemiBold;*/
+  font-size: 22px;
+  color: #4D5562;
+  padding: 0;
+  margin: 0;
+}
+
+.rectPicBox {
+  box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.15);
+  border-radius: 8px;
+}
+
+.rectPic {
+  background: #4D5562;
+  border-radius: 5px; 
+}
+
+/*
+background: #4D5562;
+border-radius: 5px;*/

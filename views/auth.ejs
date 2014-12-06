@@ -1,1 +1,53 @@
+<!-- Hay un botón de Add para meter más campos, que cuando le das se añade un div con un  select que con cada opción general al lado un tipo de form u otro-->
+
+<script type="text/javascript" src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v2.0.0.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    
+  });
+  function getTemplate (name) {
+    return Handlebars.compile(document.getElementById(name).innerHTML)
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("addField").addEventListener('click', function () {
+      var a = getTemplate("div1")({})
+      document.getElementById("content").innerHTML += a
+    })
+  });
+</script>
+<script>
+  
+    
+</script>
+
 <h1> <%= provider %></h1>
+<div id="hey">
+  <button id="addField">Add</button>
+  <div id="content"></div>
+</div>
+<template id="div1">
+  
+  <div id="hey">
+    <div style="background-color:#2AFA11">
+      <button href="#">X</button>
+      <select class="typeOfInput">
+        <option class="default" selected="selected">--Choose--</option>
+        <option class="inputText" value="name">Name</option>
+        <option class="inputText" value="surname">Surname</option>
+        <option class="inputText" value="email">Email</option>
+        <option class="inputText" value="address">Address</option>
+        <option class="inputImage" value="picture">Picture</option>
+        <option class="textArea" value="bio">Bio</option>
+      </select>
+  
+      <!-- second append -->
+      <form>
+        <input id="inputTextForm" style="display:none" type="text">
+        <input id="inputImageForm" style="display:none" type="file">
+      </form>
+    </div>
+  </div>
+
+</template>

@@ -1,14 +1,19 @@
 <html>
   <head>
-    <title></title>
+    <title>Config</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
   </head>
   <body>
-    <form action="/config">
-      <input type="text" name="name" value="<%= name %>">
-      <input type="text" name="surname" value="<%= surname %>">
-      <input type="text" name="email" value="<%= email %>">
-      <textarea name="bio" value="<%= bio %>"></textarea>
-      <input type="file" name="picture" value="<%= picture %>">
-    </form>
+    <div class="configMain">
+      <h1>Enter your info</h1>
+      <div class="rectPic"></div>
+        <form action="/config">
+          <input type="text" name="name" >
+          <input type="text" name="surname">
+          <input type="text" name="email">
+          <textarea name="bio"></textarea>
+          <input type="file" name="picture">
+        </form>
+      </div>
   </body>
 </html>

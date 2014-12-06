@@ -1,6 +1,8 @@
 var async = require('async'),
 	sha1 = require('sha1')
-var Token = require('mongoose').model('Token')
+
+var Token = require('mongoose').model('Token'),
+	Info = require('mongoose').model('Info')
 
 var getAuth = function(req, res) {
 
@@ -13,43 +15,57 @@ var getAuth = function(req, res) {
 		res.status(500).send("Bad formed request. Lacking provider or callback")
 	} else {
 
-		Token.findOne({provider: provider}, function (err, token) {
+		Info.find({key:{$in:permissions}}, function (err, infos) {
+			if (err) {
+				res.send(500)
+			} else {
+				Token.findOne({provider: provider}, function (err, token) {
 
-			var already = false
+					var already = false
 
-			if (token) {
-				already = true
-			} 
-			// [["name", 0], ["email", 1]]
-			async.reduce(permissions, [], function (vs, p, cb){
+					if (token) {
+						already = true
+					} 
+					// [["name", "Jorge Izquierdo", 0], ["email", "izqui97@gmail.com", 1]]
 
-				var found = 0
-				if (token) {
+					async.reduce(permissions, [], function (vs, p, cb){
 
-					var perms = token.permissions.toObject()
+						var found = 0
+						
+						if (token) {
 
-					for (var i in perms) {
+							var perms = token.permissions.toObject()
 
-						if (perms[i] == p) {
-							found = 1
-							break
+							for (var i in perms) {
+
+								if (perms[i] == p) {
+									found = 1
+									break
+								}
+							}
+						} 
+						//TODO: If no info for field, option to enter it [Issue: https://github.com/authyhack/server/issues/3]
+						var value = null
+						for (var i in infos) {
+							if (infos[i].key == p) {
+								value = infos[i].value
+							}
 						}
-					}
-				} 
-				//TODO: Not push data not existent in database [Issue: https://github.com/authyhack/server/issues/1]
-				vs.push([p, found])
-				cb(null, vs)
+						if (value) vs.push([p, value, found])
+						cb(null, vs)
 
-			}, function(err, permissions){
+					}, function(err, permissions){
 
-				console.log(permissions)
-				if (err) {
-					res.sendStatus(500)
-				} else {
+						console.log(permissions)
+						if (err) {
+							res.sendStatus(500)
+						} else {
 
-					res.render('auth', {provider: provider, permissions: permissions, alreadyAuthorized: already, callback: callback})
-				}
-			})
+							res.render('auth', {provider: provider, permissions: permissions, alreadyAuthorized: already, callback: callback})
+						}
+					})
+				})
+			}
 		})
 	}
 }

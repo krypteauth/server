@@ -8,12 +8,13 @@
 	<% if (alreadyAuthorized) { %>
 	<h3>You already authorised <%= provider %></h3>
 	<% } %>
-	<form action="/auth">
+	<%=permissions%>
+	<form action="/auth" method="POST">
 		<input type="hidden" name="provider" value="<%= provider %>"/>
 		<input type="hidden" name="callback" value="<%= callback %>"/>
 		
 		<% for(var i in permissions) { %>
-		<input type="checkbox" name="<%= permissions[i][0]%>" <% if (permissions[i][1]){ %> checked<% } %> ><%= permissions[i][0]%></input> 
+		<input type="checkbox" name="p.<%= permissions[i][0]%>" <% if (permissions[i][1]){ %> checked<% } %> ><%=permissions[i][0]%></input> 
 		<% } %>
 
 		<input value="Login" type="submit"/>

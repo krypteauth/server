@@ -7,7 +7,8 @@ var Schema = mongoose.Schema,
 var Token = new Schema({
 	token: String,
 	expires: Number,
-   	permissions: [String]
+   	permissions: [String],
+   	provider: String
 });
 
 module.exports = exports = Token

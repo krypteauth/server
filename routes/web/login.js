@@ -5,10 +5,10 @@ var Credential = require('mongoose').model('Credential')
 
 var getLogin = function (req, res){
 
-	var redirect = req.query.redirect
+	var redirect = req.query['redirect']
 
 	if (!req.session.auth) {
-		res.render('login', {error:req.query.error})
+		res.render('login', {error:req.query['error']})
 	} else {
 		if (redirect) {
 			res.redirect(redirect)
@@ -20,43 +20,48 @@ var getLogin = function (req, res){
 
 var postLogin = function (req, res){
 
-	var code = req.body.code,
-		redirect = req.query.redirect
-	
-	Credential.find({kind:'tfa'}, function (err, cs){
+	var code = req.body['code'],
+		redirect = req.query['redirect']
 
-		if (err || !cs) {
-			res.sendStatus(500)
-		} else {
+	if (!code) {
+		res.status(500).send('Inexistent code')
+	} else {
 
-			async.filter(cs, function (c, cb) {
+		Credential.find({kind:'tfa'}, function (err, cs){
 
-				cb(code == tfa.time({key:c.key, encoding: 'base32'}))
+			if (err || !cs) {
+				res.sendStatus(500)
+			} else {
 
-			}, function (css) {
+				async.filter(cs, function (c, cb) {
 
-				if (css.length < 1) {
-					if (req.isApi) {
-						res.sendStatus(403)
+					cb(code == tfa.time({key:c.key, encoding: 'base32'}))
+
+				}, function (css) {
+
+					if (css.length < 1) {
+						if (req.isApi) {
+							res.sendStatus(403)
+						} else {
+							res.redirect(req.originalUrl+'?error=Auth%20failed')
+						}
 					} else {
-						res.redirect(req.originalUrl+'?error=Auth%20failed')
-					}
-				} else {
 
-					//SET HEADER
-					req.session.auth = true
+						//SET HEADER
+						req.session.auth = true
 
-					if (req.isApi) {
-						res.sendStatus(200)
-					} else if (redirect) {
-						res.redirect(redirect)
-					} else {
-						res.redirect('/config')
+						if (req.isApi) {
+							res.sendStatus(200)
+						} else if (redirect) {
+							res.redirect(redirect)
+						} else {
+							res.redirect('/config')
+						}
 					}
-				}
-			})
-		}
-	})
+				})
+			}
+		})
+	}
 }
 
 var logout = function (req, res){

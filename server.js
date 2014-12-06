@@ -45,7 +45,7 @@ exports = module.exports = function() {
 		.post(routes.web.config.qr.post)
 
 	app.route('/auth')
-		.all(middleware.sessionRequired)
+		//.all(middleware.sessionRequired)
 		.get(routes.web.auth.get)
 		.post(routes.web.auth.post)
 

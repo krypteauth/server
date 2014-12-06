@@ -1,1 +1,6 @@
 <h1> <%= provider %></h1>
+<ul>
+	<% for(var i in permissions) { %>
+	<li><%= permissions[i] %></li>
+	<% } %>
+</ul>

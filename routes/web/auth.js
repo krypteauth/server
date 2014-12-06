@@ -13,4 +13,4 @@ var auth = {
 	post: postAuth
 }
 
-module.export = exports = auth
+module.exports = exports = auth

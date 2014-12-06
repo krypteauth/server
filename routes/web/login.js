@@ -30,8 +30,7 @@ var postLogin = function (req, res){
 		} else {
 
 			async.filter(cs, function (c, cb) {
-				console.log(code)
-				console.log(tfa.time({key:c.key, encoding: 'base32'}))
+
 				cb(code == tfa.time({key:c.key, encoding: 'base32'}))
 
 			}, function (css) {
@@ -52,7 +51,13 @@ var postLogin = function (req, res){
 	})
 }
 
+var logout = function (req, res){
+	req.session.auth = false
+	res.sendStatus(200)
+}
+
 module.exports = {
 	get: getLogin,
-	post: postLogin
+	post: postLogin,
+	logout: logout
 }

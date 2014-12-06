@@ -28,6 +28,9 @@ exports = module.exports = function() {
 		.get(routes.web.login.get)
 		.post(routes.web.login.post)
 
+	app.route('/logout')
+		.get(routes.web.login.logout)
+
 	app.route('/config')
 		.all(middleware.sessionRequired)
 		.get(routes.web.config.get)

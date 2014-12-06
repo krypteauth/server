@@ -1,11 +1,25 @@
+var Token = require('mongoose').model('Token')
 
 var getProviders = function(req, res) {
 
-	if (req.isApi) {
-		res.send(200, {so:'json'})
-	} else {
-		res.send('ola')
-	}
+	Token.find({}, function (err, tokens) {
+
+		if (err) {
+			res.sendStatus(500)
+		} else {
+
+			var providers = []
+			tokens.forEach(function (t){
+				providers.push(t.provider)
+			})
+
+			if (req.isApi) {
+				res.send({providers:providers})
+			} else {
+				res.render('providers', {providers:providers})
+			}
+		}
+	})
 }
 
 var prov = {

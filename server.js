@@ -32,7 +32,7 @@ exports = module.exports = function() {
 		.get(middleware.isApi, routes.web.login.logout)
 
 	app.route('/providers')
-		.all(middleware.sessionRequired)
+		//.all(middleware.sessionRequired)
 		.get(middleware.isApi, routes.web.providers.get)
 
 	app.route('/config')

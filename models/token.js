@@ -9,6 +9,6 @@ var Token = new Schema({
 	expires: Number,
    	permissions: [String],
    	provider: String
-});
+})
 
 module.exports = exports = Token

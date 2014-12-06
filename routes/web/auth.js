@@ -29,7 +29,7 @@ var getAuth = function(req, res) {
 						found = (pi == p)
 					})
 				} 
-				//TODO: Not push data not existent in database
+				//TODO: Not push data not existent in database [Issue: https://github.com/authyhack/server/issues/1]
 				vs.push([p, found])
 				cb(null, vs)
 
@@ -49,9 +49,7 @@ var postAuth = function(req, res) {
 
 	var provider = req.body.provider,
 		callback = req.body.callback
-
-
-
+		
 }
 
 var auth = {

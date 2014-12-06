@@ -36,6 +36,9 @@ var postQR = function (req, res){
 				if (err) {
 					res.sendStatus(500)
 				} else {
+					
+					//SET HEADER
+					req.session.auth = true
 					res.redirect('/config?qr')
 				}
 			})

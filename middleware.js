@@ -7,7 +7,7 @@ var sign = function(s, t) {
 	return sha1(s+' '+t)
 }
 
-var checkSignature = function (req, res, next){
+/*var checkSignature = function (req, res, next){
 	
 	var s = req.get('X-Api-Signature'),
 		t = parseInt(req.get('X-Api-Timestamp')),
@@ -44,6 +44,18 @@ var checkToken = function (req, res, next) {
 		}
 	})
 }
+*/
+
+var sessionRequired = function (req, res, next){
+
+	var session = req.session
+
+	if (session.auth) {
+		next()
+	} else {
+		res.redirect('/login?redirect='+req.originalUrl)
+	}
+}
 
 var json = function (req, res, next) {
 
@@ -53,8 +65,9 @@ var json = function (req, res, next) {
 
 var middleware = {
 
-	signatureRequired: checkSignature, 
-	tokenRequired: checkToken,
+	//signatureRequired: checkSignature, 
+	//tokenRequired: checkToken,
+	sessionRequired: sessionRequired,
 	jsonResponse: json
 }
 

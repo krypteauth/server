@@ -1,6 +1,7 @@
 var express = require('express'),
 	bodyParser = require('body-parser'),
-	logger = require('morgan')
+	logger = require('morgan'),
+	session = require('express-session')
 
 var routes = require('./routes'),
 	middleware = require('./middleware')
@@ -13,6 +14,12 @@ exports = module.exports = function() {
 	app.use(logger('combined'))
 	app.set('view engine', 'ejs')
 	app.use(bodyParser.urlencoded({ extended: false }))
+	app.use(session({
+		secret: 'itiscoolerino',
+		resave: false,
+		saveUninitialized: true
+	}))
+	app.use(express.static(__dirname + '/public'))
 
 	app.route('/')
 		.get(routes.web.root.get)
@@ -22,12 +29,14 @@ exports = module.exports = function() {
 		.post(routes.web.login.post)
 
 	app.route('/config')
+		.all(middleware.sessionRequired)
 		.get(routes.web.config.get)
 	app.route('/config/qr')
 		.get(routes.web.config.qr.get)
 		.post(routes.web.config.qr.post)
 
 	app.route('/auth')
+		.all(middleware.sessionRequired)
 		.get(routes.web.auth.get)
 		.post(routes.web.auth.post)
 

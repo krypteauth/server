@@ -1,4 +1,5 @@
-var tfa = require('speakeasy')
+var tfa = require('speakeasy'),
+	async = require('async')
 
 var Credential = require('mongoose').model('Credential')
 
@@ -11,26 +12,32 @@ var postLogin = function (req, res){
 	var code = req.body.code,
 		redirect = req.body.redirect
 	
-	Credential.findOne({kind:'tfa'}, function (err, c){
+	//TODO: Find more that one
+	Credential.find({kind:'tfa'}, function (err, cs){
 
 		if (err || !c) {
 			res.sendStatus(500)
 		} else {
 
-			if (code != tfa.time({key:c.key, encoding: 'base32'})) {
+			async.filter(cs, function (c, cb) {
 
-				res.redirect('/login?error=Auth%20failed')
-			} else {
-
-				if (redirect) {
-					res.redirect(redirect)
+				cb(tfa.time({key:c.key, encoding: 'base32'}))
+			}, function (css) {
+				
+				if (css.length < 1) {
+					res.redirect(res.originalUrl+'?error=Auth%20failed')
 				} else {
-					res.redirect('/config?qr')
+					if (redirect) {
+						res.redirect(redirect)
+					} else {
+						res.redirect('/config')
+					}
 				}
-			}
+			})
 		}
 	})
 }
+
 module.exports = {
 	get: getLogin,
 	post: postLogin

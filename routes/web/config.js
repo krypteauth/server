@@ -1,4 +1,5 @@
 var tfa = require('speakeasy')
+var middleware = require('../../middleware')
 
 var Credential = require('mongoose').model('Credential')
 
@@ -9,11 +10,10 @@ var getConf = function (req, res){
 var getQR = function (req, res){
 
 	Credential.count(function (err, c){
-		if (err || c != 0) {
-			res.sendStatus(404)
+		if (err || (c != 0 && !req.session.auth)) {
+			res.sendStatus(403)
 		} else {
 			var key = tfa.generate_key({length: 20, google_auth_qr: true})
-			console.log()
 			res.render('qr', {qrURL:key.google_auth_qr, key: key.base32, error: req.query.error})
 		}
 	})
@@ -26,12 +26,12 @@ var postQR = function (req, res){
 
 	Credential.count(function (err, c){ 
 
-		if (c != 0) {
+		if (c != 0 && !req.session.auth) {
 
-			//Has to be authenticated
-		}
+			//If already has one credential, has to be authenticated to create another one
+			res.sendStatus(403)
 
-		if (key && code && code == tfa.time({key:key, encoding: 'base32'})) {
+		} else if (key && code && code == tfa.time({key:key, encoding: 'base32'})) {
 			new Credential({key:key, kind:'tfa'}).save(function (err){
 				if (err) {
 					res.sendStatus(500)

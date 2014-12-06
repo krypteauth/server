@@ -1,20 +1,59 @@
-var tfa = require('speakeasy')
+var tfa = require('speakeasy'),
+	async = require('async')
 var middleware = require('../../middleware')
 
-var Credential = require('mongoose').model('Credential')
+var Credential = require('mongoose').model('Credential'),
+	Info = require('mongoose').model('Info')
 
 var getConf = function (req, res){
-	res.render('config', {error:req.query.error})
+
+	var data = {}
+
+	Info.find({}, function (err, infos) {
+
+		if (err) {
+
+			res.sendStatus(500)
+		} else {
+
+			async.reduce(infos, {}, function (v, inf, cb) {
+				v[inf.key] = inf.value
+				cb(null, v)
+			}, function (err, vs){
+
+				res.render('config', {data:vs, error:req.query.error})
+			})
+		}
+	})
 }
 
 var postConf = function (req, res){
 
 	var form = req.body
 
+	var as = []
 	for (var k in form) {
-		var value = form[k]
-		console.log(k+value)
+		as.push([k, form[k]])
 	}
+
+	async.eachSeries(as, function(a, cb) {
+		Info.findOne({key: a[0]}, function (err, i){
+			if (err || !i) {
+				i = new Info({key: a[0]})
+			} 
+
+			i.value = a[1]
+			i.save(cb)
+		}) 
+	}, function (err) {
+		if (!err) {
+			if (!req.isApi) {
+				res.redirect('/config')
+			} else {
+				res.sendStatus(200)
+			}
+		}
+	})
 }
 
 var getQR = function (req, res){

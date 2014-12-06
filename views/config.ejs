@@ -4,11 +4,11 @@
   </head>
   <body>
     <form action="/config">
-      <input type="text" name="name" value="<%= name %>">
-      <input type="text" name="surname" value="<%= surname %>">
-      <input type="text" name="email" value="<%= email %>">
-      <textarea name="bio" value="<%= bio %>"></textarea>
-      <input type="file" name="picture" value="<%= picture %>">
+      <input type="text" name="name" value="<% if (data['name']){ %><%= data['name'] %><% } %>">
+      <input type="text" name="surname" value="<% if (data['surname']){ %><%= data['surname'] %><% } %>">
+      <input type="text" name="email" value="<% if (data['email']){ %><%= data['email'] %><% } %>">
+      <textarea name="bio" value="<% if (data['bio']){ %><%= data['bio'] %><% } %>"></textarea>
+      <input type="file" name="picture" value="<% if (data['picture']){ %><%= data['picture'] %><% } %>">
     </form>
   </body>
 </html>

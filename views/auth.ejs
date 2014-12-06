@@ -1,6 +1,21 @@
-<h1> <%= provider %></h1>
-<ul>
-	<% for(var i in permissions) { %>
-	<li><%= permissions[i] %></li>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Auth</title>
+</head>
+<body>
+	<h1> <%= provider %></h1>
+	<% if (alreadyAuthorized) { %>
+	<h3>You already authorised <%= provider %></h3>
 	<% } %>
-</ul>
+	<form action="/auth">
+		<input type="hidden" name="provider" value="<%= provider %>"/>
+		
+		<% for(var i in permissions) { %>
+		<input type="checkbox" name="<%= permissions[i][0]%>" <% if (permissions[i][1]){ %> checked<% } %> ><%= permissions[i][0]%></input> 
+		<% } %>
+
+		<input type="submit"/>
+	</form>
+</body>
+</html>

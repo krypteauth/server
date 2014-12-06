@@ -1,6 +1,6 @@
-var async = require('async')
+var async = require('async'),
+	sha1 = require('sha1')
 var Token = require('mongoose').model('Token')
-var sha1 = require('sha1')
 
 var getAuth = function(req, res) {
 
@@ -38,7 +38,6 @@ var getAuth = function(req, res) {
 				} 
 				//TODO: Not push data not existent in database [Issue: https://github.com/authyhack/server/issues/1]
 				vs.push([p, found])
-				console.log('ps'+[p, found])
 				cb(null, vs)
 
 			}, function(err, permissions){
@@ -73,7 +72,8 @@ var postAuth = function(req, res) {
 		Token.findOne({provider: provider}, function (err, token) {
 
 			if (err || !token) {
-				token = new Token({provider: provider})
+				//TODO: Token expiry thingy [Issue: https://github.com/authyhack/server/issues/2]
+				token = new Token({provider: provider, token: generateToken(provider)})
 			}
 
 			token.permissions = permissions
@@ -83,11 +83,16 @@ var postAuth = function(req, res) {
 				} else if (req.isApi) {
 					res.send(200)
 				} else {
-					res.redirect(callback)
+					res.redirect(callback+'?token='+token.token)
 				}
 			})
 		})
 	}		
+}
+
+var generateToken = function (prov){
+
+	return sha1(prov+new Date().getTime())
 }
 
 var auth = {

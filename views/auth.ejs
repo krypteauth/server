@@ -8,7 +8,6 @@
 	<% if (alreadyAuthorized) { %>
 	<h3>You already authorised <%= provider %></h3>
 	<% } %>
-	<%=permissions%>
 	<form action="/auth" method="POST">
 		<input type="hidden" name="provider" value="<%= provider %>"/>
 		<input type="hidden" name="callback" value="<%= callback %>"/>

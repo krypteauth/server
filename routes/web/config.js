@@ -4,7 +4,7 @@ var middleware = require('../../middleware')
 var Credential = require('mongoose').model('Credential')
 
 var getConf = function (req, res){
-	res.send('configurate you idiot')
+	res.render('config', {error:req.query.error})
 }
 
 var getQR = function (req, res){
@@ -36,7 +36,7 @@ var postQR = function (req, res){
 				if (err) {
 					res.sendStatus(500)
 				} else {
-					
+
 					//SET HEADER
 					req.session.auth = true
 					res.redirect('/config?qr')

@@ -8,5 +8,6 @@ var require = function (module) {
 
 module.exports = {
     Token: require('token'),
-    Credential: require('credential')
+    Credential: require('credential'),
+    Info: require('info')
 };

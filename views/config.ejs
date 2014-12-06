@@ -7,13 +7,14 @@
     <div class="configMain">
       <h1>Enter your info</h1>
       <div class="rectPic"></div>
-        <form action="/config">
-          <input type="text" name="name" >
-          <input type="text" name="surname">
-          <input type="text" name="email">
-          <textarea name="bio"></textarea>
-          <input type="file" name="picture">
-        </form>
+        <form action="/config" method="POST">
+        <input type="text" name="name" value="<% if (data['name']){ %><%= data['name'] %><% } %>">
+        <input type="text" name="surname" value="<% if (data['surname']){ %><%= data['surname'] %><% } %>">
+        <input type="text" name="email" value="<% if (data['email']){ %><%= data['email'] %><% } %>">
+        <textarea name="bio" value="<% if (data['bio']){ %><%= data['bio'] %><% } %>"></textarea>
+        <input type="file" name="picture" value="<% if (data['picture']){ %><%= data['picture'] %><% } %>">
+        <input type="submit" />
+      </form>
       </div>
   </body>
 </html>

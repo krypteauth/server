@@ -36,8 +36,9 @@ exports = module.exports = function() {
 		.get(middleware.isApi, routes.web.providers.get)
 
 	app.route('/config')
-		.all(middleware.sessionRequired)
+		//.all(middleware.sessionRequired)
 		.get(routes.web.config.get)
+		.post(routes.web.config.post)
 
 	app.route('/config/qr')
 		.get(routes.web.config.qr.get)

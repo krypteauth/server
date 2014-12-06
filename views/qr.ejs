@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QR</title>
+</head>
+<body>
+	<img src="<%= qrURL%>"/>
+	<form action="/config/qr" method="POST">
+		<input type="text" name="code"/>
+		<% if (key) { %>
+		<input type="hidden" name="key" value="<%= key %>"/>
+		<% } %>
+		<input type="submit"/>
+	</form>
+</body>
+</html>

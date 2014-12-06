@@ -12,9 +12,19 @@ exports = module.exports = function() {
 	app.set('x-powered-by', false);
 	app.use(logger('combined'))
 	app.set('view engine', 'ejs')
+	app.use(bodyParser.urlencoded({ extended: false }))
 
 	app.route('/')
-		.get(routes.web.index.get)
+		.get(routes.web.root.get)
+
+	app.route('/login')
+		.get(routes.web.login.get)
+
+	app.route('/config')
+		.get(routes.web.config.get)
+	app.route('/config/qr')
+		.get(routes.web.config.qr.get)
+		.post(routes.web.config.qr.post)
 
 	app.route('/auth')
 		.get(routes.web.auth.get)

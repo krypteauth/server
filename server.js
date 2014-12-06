@@ -19,6 +19,7 @@ exports = module.exports = function() {
 
 	app.route('/login')
 		.get(routes.web.login.get)
+		.post(routes.web.login.post)
 
 	app.route('/config')
 		.get(routes.web.config.get)

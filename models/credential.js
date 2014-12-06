@@ -5,7 +5,8 @@ var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
 var Credential = new Schema({
-	key: String
+	key: String,
+	kind: String
 });
 
 module.exports = exports = Credential

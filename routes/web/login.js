@@ -36,7 +36,11 @@ var postLogin = function (req, res){
 			}, function (css) {
 
 				if (css.length < 1) {
-					res.redirect(req.originalUrl+'?error=Auth%20failed')
+					if (req.isApi) {
+						res.sendStatus(403)
+					} else {
+						res.redirect(req.originalUrl+'?error=Auth%20failed')
+					}
 				} else {
 
 					//SET HEADER

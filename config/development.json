@@ -1,0 +1,6 @@
+{	
+	"env": "development",
+	"db": "mongodb://localhost/authy",
+	"port": 5000,
+	"expireToken": 864000000
+}

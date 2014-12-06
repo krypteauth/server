@@ -1,0 +1,6 @@
+{
+	"env": "production",
+	"db": "mongodb://95.85.17.93/vonsai",
+	"port": 5000, 
+	"expireToken": 864000000
+}

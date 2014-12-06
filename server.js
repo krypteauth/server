@@ -38,6 +38,7 @@ exports = module.exports = function() {
 	app.route('/config')
 		.all(middleware.sessionRequired)
 		.get(routes.web.config.get)
+		.post(routes.web.config.post)
 
 	app.route('/config/qr')
 		.get(routes.web.config.qr.get)

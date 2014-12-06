@@ -7,6 +7,16 @@ var getConf = function (req, res){
 	res.render('config', {error:req.query.error})
 }
 
+var postConf = function (req, res){
+
+	var form = req.body
+
+	for (var k in form) {
+		var value = form[k]
+		console.log(k+value)
+	}
+}
+
 var getQR = function (req, res){
 
 	Credential.count(function (err, c){
@@ -50,6 +60,7 @@ var postQR = function (req, res){
 
 module.exports = {
 	get: getConf,
+	post: postConf,
 	qr: {
 		get: getQR,
 		post: postQR

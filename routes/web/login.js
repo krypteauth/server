@@ -39,8 +39,12 @@ var postLogin = function (req, res){
 					res.redirect(req.originalUrl+'?error=Auth%20failed')
 				} else {
 
+					//SET HEADER
 					req.session.auth = true
-					if (redirect) {
+
+					if (req.isApi) {
+						res.sendStatus(200)
+					} else if (redirect) {
 						res.redirect(redirect)
 					} else {
 						res.redirect('/config')

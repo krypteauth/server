@@ -26,14 +26,19 @@ exports = module.exports = function() {
 
 	app.route('/login')
 		.get(routes.web.login.get)
-		.post(routes.web.login.post)
+		.post(middleware.isApi, routes.web.login.post)
 
 	app.route('/logout')
-		.get(routes.web.login.logout)
+		.get(middleware.isApi, routes.web.login.logout)
+
+	app.route('/providers')
+		.all(middleware.sessionRequired)
+		.get(middleware.isApi, routes.web.providers.get)
 
 	app.route('/config')
 		.all(middleware.sessionRequired)
 		.get(routes.web.config.get)
+
 	app.route('/config/qr')
 		.get(routes.web.config.qr.get)
 		.post(routes.web.config.qr.post)
@@ -42,31 +47,6 @@ exports = module.exports = function() {
 		.all(middleware.sessionRequired)
 		.get(routes.web.auth.get)
 		.post(routes.web.auth.post)
-
-	//app.use('/api/*', bodyParser.json(), middleware.jsonResponse)
-	//app.use('/api/*', middleware.signatureRequired)
-
-	/*app.route('/api/auth')
-		.post(routes.api.auth.post)
-		.delete(middleware.tokenRequired, routes.api.auth.delete)
-
-	app.route('/api/categories')
-		.all(middleware.tokenRequired)
-		.get(routes.api.categories.get)
-		.post(routes.api.categories.post)
-
-	app.route('/api/articles')
-		.all(middleware.tokenRequired)
-		.get(routes.api.articles.get)
-
-	app.route('/api/articles/saved')
-		.all(middleware.tokenRequired)
-		.get(routes.api.articles.saved.get)
-
-	app.route('/api/article/:id')
-		.all(middleware.tokenRequired)
-		.get(routes.api.article.get)
-		.post(routes.api.article.post)*/
 
 	return app
 }

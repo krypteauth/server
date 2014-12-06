@@ -10,5 +10,6 @@ module.exports = exports = {
     root: require('root'),
     auth: require('auth'),
     login: require('login'),
-    config: require('config')
+    config: require('config'),
+    providers: require('providers')
 }

@@ -7,7 +7,7 @@ var Token = require('mongoose').model('Token'),
 var getAuth = function(req, res) {
 
 	var permissions = JSON.parse(req.query['permissions'] || "[\"name\"]"),
-		provider = req.query['provider'],
+		provider = req.query["provider"],
 		callback = req.query['callback']
 
 	if (!provider || !callback) {
@@ -97,7 +97,7 @@ var postAuth = function(req, res) {
 				if (err) {
 					res.status(500).send('I don\'t know what happened. i was tired')
 				} else if (req.isApi) {
-					res.send(200)
+					res.send({token:token.token})
 				} else {
 					res.redirect(callback+'?token='+token.token)
 				}

@@ -3,16 +3,54 @@
   src: url("../fonts/AvenirNext.ttc");
 }
 
-.configBg, .qrBackground, .loginBackground {
+.configBg, .qrBackground, .loginBackground, .authBackground {
   background-color: rgba(77, 85, 98, 0.1);
 }
 
-.loginBackground p {
+.loginBackground p, .configBg .addFiles, .authBackground p, .authBackground a, .oh {
   text-align: center;
   color: rgba(77, 85, 98, 0.4);
   font-size: 13px;
   margin-top: 70px;
   font-family: AvenirNext-DemiBold;
+}
+
+.oh {
+  margin: 15px 0 0 0;
+}
+
+.authBackground p {
+  margin-top: 15px;
+  text-decoration: none;
+}
+.authBackground a{
+  color: #4D5562;
+  margin-top: 15px;
+  text-decoration: underline;
+}
+.authTopBox {
+  height: 80px;
+  background-color: rgba(77, 85, 98, 0.05);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.authTopBox h1 {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.authBottomBox {
+  padding-right: 30px; 
+  padding-left: 30px;
+}
+  
+.configBg .addFiles { /* Que es el actual LogOut*/
+  float: right;
+  display: inline-block;
+  margin-top: 25px;
+  text-decoration: underline;
+  margin-right: 20px;
 }
 
 .miniBoxes {
@@ -39,7 +77,7 @@
   outline-style: solid;
 }
 
-.logButton[type='submit'] {
+.logButton[type='submit'], .logButton button {
   border: 1px solid rgba(77,85,97,0.40);
   box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
   border-radius: 5px;
@@ -48,14 +86,31 @@
   width: 151px;
   padding: 0;
   display: inline-block;
-  margin-top: 130px;
-    
+
   font-family: AvenirNext-DemiBold;
   line-height: 18px;
   font-size: 13px;
 }
+.BLA {
+  border: 1px solid rgba(77,85,97,0.40);
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  bottom: 0;
+  height: 66px;
+  width: 151px;
+  padding: 0;
+  display: inline-block;
 
-.logButton[type='submit']:focus {
+  font-family: AvenirNext-DemiBold;
+  line-height: 18px;
+  font-size: 13px;
+
+  background: rgba(69,54,54,0.20);
+  color: #4D5562;
+  float: right;
+}
+
+.logButton[type='submit']:focus, .logButton a:focus {
   outline-style: none;
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3);
 }
@@ -63,12 +118,37 @@
 #login {
   color: #FFFFFF;
   background: #93CA7F;
+  margin-top: 130px;
 }
+#cancel {
+  width: 141px;
+  margin-top: 10px;
+  float: right;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+#accept {
+  width: 141px;
+  color: #FFFFFF;
+  background: #93CA7F;
+  margin-top: 10px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
 
 #logout {
   background: rgba(69,54,54,0.20);
   color: #4D5562;
+  margin-top: 130px;
   float: right;
+}
+
+#submit {
+  color: #FFFFFF;
+  background: #93CA7F;
+  float: left;
+  margin-right: 18px;
 }
 
 h1 {
@@ -97,7 +177,7 @@ li{
   height: 25px;
 }
 
-.configMain, .qrMain, .loginMain {
+.configMain, .qrMain, .loginMain, .authMain {
   background: #FFFFFF;
   box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.15);
   border-radius: 8px;
@@ -106,7 +186,7 @@ li{
   width: 350px;
 
   padding: 30px;
-
+  overflow: scroll;
 
   position:absolute;
   z-index:15;
@@ -114,9 +194,16 @@ li{
   left:50%;
   margin:-100px 0 0 -195px;
 }
+.configMain {
+  height: 458px;
+}
 
 .loginMain {
   height: 419px;
+}
+
+.authMain {
+  padding: 0;
 }
 
 .rectPicBox {
@@ -136,7 +223,7 @@ li{
 }
 
 .rectPicLogo img {
-  padding: 23px 23px 23px 23px;
+  padding: 25px 23px 23px 24px;
 }
 
 .importPic {
@@ -158,14 +245,14 @@ li{
 }
 
 .name, .surname, .email, .loginCode {
-  width: 290px;
+  width: 332px;
   height: 33px;
   
   position: relative;
 
   border: 1px solid rgba(77,85,97,0.40);
   border-radius: 5px;
- 
+
   margin-top: 20px;
   padding-left: 15px;
 }
@@ -174,8 +261,20 @@ li{
   margin-bottom: 20px;
 }
 
+.TICK {
+  display: inline-block;
+}
+
+.TICKname {
+  display: inline-block;
+}
+
+.TICKnamePrima {
+  display: inline-block;
+}
+
 textarea {
-  width: 290px;
+  width: 332px;
   height: 66px;
  
   border: 1px solid rgba(77,85,97,0.40);
@@ -190,4 +289,31 @@ textarea {
 .qrImage {
   margin-top: 30px;
   padding: 0 85px 0 85px;
+}
+
+
+.elUltimoPutoBotonQueMaqueto {
+  border: 1px solid rgba(77,85,97,0.40);
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  bottom: 0;
+  height: 66px;
+  width: 251px;
+  padding: 0;
+  display: inline-block;
+
+  font-family: AvenirNext-DemiBold;
+  line-height: 18px;
+  font-size: 13px;
+
+  background: #93CA7F;
+  color: white;
+  float: right;
+  margin-right: 50px;
+  margin-top: 30px;
+}
+
+.elUltimoPutoBotonQueMaqueto:focus {
+  outline-style: none;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3);
 }

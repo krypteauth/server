@@ -22,10 +22,9 @@ var getLogin = function (req, res){
 
 var postLogin = function (req, res){
 
-	var code = req.body['code1']+req.body['code2']+req.body['code3']+req.body['code4']+req.body['code5']+req.body['code6'],
+	var code = req.body['code'] || req.body['code1']+req.body['code2']+req.body['code3']+req.body['code4']+req.body['code5']+req.body['code6'],
 		redirect = req.query['redirect']
 
-	console.log(code=="123456")
 	if (!code) {
 		res.status(500).send('Inexistent code')
 	} else {

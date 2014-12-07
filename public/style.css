@@ -12,6 +12,7 @@
   color: rgba(77, 85, 98, 0.4);
   font-size: 13px;
   margin-top: 70px;
+  font-family: AvenirNext-DemiBold;
 }
 
 .miniBoxes {
@@ -39,7 +40,6 @@
 }
 
 .logButton[type='submit'] {
-  
   border: 1px solid rgba(77,85,97,0.40);
   box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
   border-radius: 5px;

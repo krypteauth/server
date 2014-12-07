@@ -2,22 +2,30 @@
 <html>
 <head>
 	<title>Auth</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
-<body>
-	<h1> <%= provider %> wants your information</h1>
-	<% if (alreadyAuthorized) { %>
-	<h3>You already authorised <%= provider %></h3>
-	<% } %>
-	<form action="/auth" method="POST">
-		<input type="hidden" name="provider" value="<%= provider %>"/>
-		<input type="hidden" name="callback" value="<%= callback %>"/>
-		
-		<% for(var i in permissions) { %>
-		<input type="checkbox" name="p.<%= permissions[i][0]%>" <% if (permissions[i][2]){ %> checked<% } %> ><%=permissions[i][0]%>: <%=permissions[i][1]%></input> 
-		<% } %>
-
-		<input value="Login" type="submit"/>
-	</form>
-	<a href="<%= callback%>">Cancel</a>
+<body class="authBackground">
+  <div class="authMain">
+    <div class="authTopBox">
+      <h1><%= provider %></h1>
+    </div>
+    <div class="authBottomBox">
+      <% if (alreadyAuthorized) { %>
+        <p>You already authorised <a><%= provider %></a>. It requires</p>
+      <% } else {%>
+        <p><a href="#"><%= provider %></a> requires the following information:</p>
+      <% } %>
+        <form action="/auth" method="POST">
+          <input class="TICK" type="hidden" name="provider" value="<%= provider %>"/>
+          <input class="TICKname" type="hidden" name="callback" value="<%= callback %>"/>
+          <% for(var i in permissions) { %>
+          <input type="checkbox" name="p.<%= permissions[i][0]%>" <% if (permissions[i][2]){ %> checked<% } %> ><%=permissions[i][0]%>: <%=permissions[i][1]%></input> 
+          <% } %>
+          <br>
+          <input class="logButton" id="accept" value="Login" type="submit"/>
+          <button class="BLA" id="cancel"><a href="<%= callback%>">Cancel</a></button>
+        </form>
+    </div>
+  </div>
 </body>
 </html>

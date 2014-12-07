@@ -25,7 +25,8 @@
         <input placeholder="Surname" class="surname" type="text" name="surname" value="<% if (data['surname']){ %><%= data['surname'] %><% } %>">
         <input placeholder="Email" class="email" type="text" name="email" value="<% if (data['email']){ %><%= data['email'] %><% } %>">
         <textarea placeholder="Description" name="bio" value="<% if (data['bio']){ %><%= data['bio'] %><% } %>"></textarea>
-        <input type="submit" />
+        <a href="#" class="addFiles">+ Add more fields</a>
+        <input class="logButton" id="submit" type="submit" />
       </form>
       </div>
   </body>

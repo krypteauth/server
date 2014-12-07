@@ -27,7 +27,7 @@ var json = function (req, res, next) {
 
 var isApi = function (req, res, next) {
 
-	req.isApi = req.get('X-IsApi')
+	req.isApi = req.get('X-Api')
 	if (req.isApi) {
 		json(req, res, next)
 	} else {

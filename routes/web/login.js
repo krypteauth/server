@@ -10,7 +10,9 @@ var getLogin = function (req, res){
 	if (!req.session.auth) {
 		res.render('login', {error:req.query['error']})
 	} else {
-		if (redirect) {
+		if (req.isApi) {
+			res.sendStatus(200)
+		} else if (redirect) {
 			res.redirect(redirect)
 		} else {
 			res.redirect('/config')

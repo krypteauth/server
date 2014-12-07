@@ -25,8 +25,9 @@ exports = module.exports = function() {
 		.get(routes.web.root.get)
 
 	app.route('/login')
+		.all(middleware.isApi)
 		.get(routes.web.login.get)
-		.post(middleware.isApi, routes.web.login.post)
+		.post(routes.web.login.post)
 
 	app.route('/logout')
 		.get(middleware.isApi, routes.web.login.logout)
@@ -52,6 +53,6 @@ exports = module.exports = function() {
 	app.route('/data')
 		.all(middleware.tokenRequired)
 		.get(routes.web.data.get)
-		
+
 	return app
 }

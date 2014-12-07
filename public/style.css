@@ -7,7 +7,7 @@
   background-color: rgba(77, 85, 98, 0.1);
 }
 
-.loginBackground p, .configBg .addFiles, .authBackground p, .authBackground a {
+.loginBackground p, .configBg .addFiles, .authBackground p, .authBackground a, .oh {
   text-align: center;
   color: rgba(77, 85, 98, 0.4);
   font-size: 13px;
@@ -15,11 +15,15 @@
   font-family: AvenirNext-DemiBold;
 }
 
+.oh {
+  margin: 15px 0 0 0;
+}
+
 .authBackground p {
   margin-top: 15px;
   text-decoration: none;
 }
-.authBackground a {
+.authBackground a{
   color: #4D5562;
   margin-top: 15px;
   text-decoration: underline;
@@ -41,11 +45,12 @@
   padding-left: 30px;
 }
   
-.configBg .addFiles {
-  float: left;
+.configBg .addFiles { /* Que es el actual LogOut*/
+  float: right;
   display: inline-block;
   margin-top: 25px;
   text-decoration: underline;
+  margin-right: 20px;
 }
 
 .miniBoxes {
@@ -120,6 +125,7 @@
   margin-top: 10px;
   float: right;
   display: inline-block;
+  margin-bottom: 15px;
 }
 #accept {
   width: 141px;
@@ -127,6 +133,7 @@
   background: #93CA7F;
   margin-top: 10px;
   display: inline-block;
+  margin-bottom: 15px;
 }
 
 
@@ -140,7 +147,7 @@
 #submit {
   color: #FFFFFF;
   background: #93CA7F;
-  float: right;
+  float: left;
   margin-right: 18px;
 }
 
@@ -179,7 +186,7 @@ li{
   width: 350px;
 
   padding: 30px;
-
+  overflow: scroll;
 
   position:absolute;
   z-index:15;
@@ -282,4 +289,31 @@ textarea {
 .qrImage {
   margin-top: 30px;
   padding: 0 85px 0 85px;
+}
+
+
+.elUltimoPutoBotonQueMaqueto {
+  border: 1px solid rgba(77,85,97,0.40);
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  bottom: 0;
+  height: 66px;
+  width: 251px;
+  padding: 0;
+  display: inline-block;
+
+  font-family: AvenirNext-DemiBold;
+  line-height: 18px;
+  font-size: 13px;
+
+  background: #93CA7F;
+  color: white;
+  float: right;
+  margin-right: 50px;
+  margin-top: 30px;
+}
+
+.elUltimoPutoBotonQueMaqueto:focus {
+  outline-style: none;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3);
 }

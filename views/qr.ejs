@@ -3,18 +3,39 @@
 <head>
 	<title>QR</title>
 	<link rel="stylesheet" type="text/css" href="../style.css">
+
+	 <script type="text/javascript">
+function toUnicode(elmnt,content)
+{
+if (content.length==elmnt.maxLength)
+  {
+  next=elmnt.tabIndex
+  if (next<document.maxform.elements.length)
+    {
+    document.maxform.elements[next].focus()
+    }
+  }
+}
+</script>
+
 </head>
 <body class="qrBackground">
 	<div class="qrMain">
 		<h1>QR config</h1>
 
 		<img class="qrImage" src="<%= qrURL%>"/>
-		<form action="/config/qr" method="POST">
-			<input placeholder="Enter your login code" class="loginCode" type="text" name="code"/>
+		<form name="maxform" action="/config/qr" method="POST">
+      <input autofocus class="miniBoxes" type="text" name="code1" size="1" maxlength="1" tabindex="1" onkeyup="toUnicode(this,this.value)"/>
+      <input class="miniBoxes" type="text" name="code2" size="1" maxlength="1" tabindex="2" onkeyup="toUnicode(this,this.value)"/>
+      <input class="miniBoxes" type="text" name="code3" size="1" maxlength="1" tabindex="3" onkeyup="toUnicode(this,this.value)"/>
+      <input class="miniBoxes" type="text" name="code4" size="1" maxlength="1" tabindex="4" onkeyup="toUnicode(this,this.value)"/>
+      <input class="miniBoxes" type="text" name="code5" size="1" maxlength="1" tabindex="5" onkeyup="toUnicode(this,this.value)"/>
+      <input class="miniBoxes" type="text" name="code6" size="1" maxlength="1" tabindex="6" onkeyup="toUnicode(this,this.value)"/>
 			<% if (key) { %>
 			<input type="hidden" name="key" value="<%= key %>"/>
 			<% } %>
-			<input type="submit"/>
+			<p class="oh">Scan the code with Google Authenticator</p>
+			<input class="elUltimoPutoBotonQueMaqueto" type="submit"/>
 		</form>
 	</div>
 </body>

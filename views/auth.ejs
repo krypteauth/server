@@ -22,7 +22,7 @@
           
           <% for(var i in permissions) { %>
             <input class="TICKnamePrima" type="checkbox" name="p.<%= permissions[i][0]%>" <% if (permissions[i][2]){ %> checked <% } %> >
-            <span><%=permissions[i][0]%>: <%=permissions[i][1]%></span>
+            <span><b><%=permissions[i][0]%></b>: <%=permissions[i][1]%></span>
             <br>
           <% } %>
           

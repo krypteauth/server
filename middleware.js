@@ -1,6 +1,8 @@
 var sha1 = require('sha1')
 var keys = require('./config/security').keys
 
+var Token = require('mongoose').model('Token')
+
 var sign = function(s, t) {
 
 	return sha1(s+' '+t)
@@ -31,13 +33,28 @@ var isApi = function (req, res, next) {
 	} else {
 		next()
 	}
-	
+}
+
+var tokenRequired = function (req, res, next) {
+
+	var token = req.get('X-Api-Token')
+
+	Token.findOne({token: token}, function (err, tk){
+
+		if (err || !tk) {
+			res.sendStatus(403)
+		} else {
+			req.token = tk
+			json(req, res, next)
+		}
+	})
 }
 
 var middleware = {
 
 	sessionRequired: sessionRequired,
-	isApi: isApi
+	isApi: isApi,
+	tokenRequired: tokenRequired
 }
 
 module.exports = exports = middleware

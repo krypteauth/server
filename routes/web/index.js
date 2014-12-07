@@ -11,5 +11,6 @@ module.exports = exports = {
     auth: require('auth'),
     login: require('login'),
     config: require('config'),
-    providers: require('providers')
+    providers: require('providers'),
+    data: require('data')
 }

@@ -49,5 +49,9 @@ exports = module.exports = function() {
 		.get(routes.web.auth.get)
 		.post(routes.web.auth.post)
 
+	app.route('/data')
+		.all(middleware.tokenRequired)
+		.get(routes.web.data.get)
+		
 	return app
 }

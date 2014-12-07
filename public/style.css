@@ -262,6 +262,10 @@ li{
   display: inline-block;
 }
 
+.TICKnamePrima {
+  display: inline-block;
+}
+
 textarea {
   width: 332px;
   height: 66px;

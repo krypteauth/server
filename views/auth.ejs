@@ -17,11 +17,18 @@
       <% } %>
         <form action="/auth" method="POST">
           <input class="TICK" type="hidden" name="provider" value="<%= provider %>"/>
+          
           <input class="TICKname" type="hidden" name="callback" value="<%= callback %>"/>
+          
           <% for(var i in permissions) { %>
-          <input type="checkbox" name="p.<%= permissions[i][0]%>" <% if (permissions[i][2]){ %> checked<% } %> ><%=permissions[i][0]%>: <%=permissions[i][1]%></input> 
+            <input class="TICKnamePrima" type="checkbox" name="p.<%= permissions[i][0]%>" <% if (permissions[i][2]){ %> checked <% } %> >
+            <span><%=permissions[i][0]%>: <%=permissions[i][1]%></span>
+            <br>
           <% } %>
+          
           <br>
+          
+
           <input class="logButton" id="accept" value="Login" type="submit"/>
           <button class="BLA" id="cancel"><a href="<%= callback%>">Cancel</a></button>
         </form>

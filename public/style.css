@@ -263,6 +263,7 @@ li{
 
 .TICK {
   display: inline-block;
+  
 }
 
 .TICKname {
@@ -271,6 +272,9 @@ li{
 
 .TICKnamePrima {
   display: inline-block;
+  border: 1px solid rgba(77,85,97,0.40);
+  border-radius: 2px;
+  cursor: pointer;
 }
 
 textarea {

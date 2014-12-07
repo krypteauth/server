@@ -1,15 +1,32 @@
 <html>
   <head>
-    <title></title>
+    <title>Config</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
   </head>
-  <body>
-    <form action="/config" method="POST">
-      <input type="text" name="name" value="<% if (data['name']){ %><%= data['name'] %><% } %>">
-      <input type="text" name="surname" value="<% if (data['surname']){ %><%= data['surname'] %><% } %>">
-      <input type="text" name="email" value="<% if (data['email']){ %><%= data['email'] %><% } %>">
-      <textarea name="bio" value="<% if (data['bio']){ %><%= data['bio'] %><% } %>"></textarea>
-      <input type="file" name="picture" value="<% if (data['picture']){ %><%= data['picture'] %><% } %>">
-      <input type="submit" />
-    </form>
+  <body class="configBg">
+    <div class="configMain">
+      <h1>Enter your info</h1>
+      <form action="/config" method="POST">
+        <div class="rectPicBox">
+          <div class="rectPicLogo">
+            <img src="../images/camera.png"/>
+          </div>
+          <ul class="importPic">
+            <li>
+            <input class="rectPicSum" type="file" name="picture" value="<% if (data['picture']){ %><%= data['picture'] %><% } %>">
+            </li>
+            <li>
+            <a href="#">Import from Gravatar</a>
+            </li>
+          </ul>
+        </div>
+        <input placeholder="Name" class="name" type="text" name="name" value="<% if (data['name']){ %><%= data['name'] %><% } %>">
+
+        <input placeholder="Surname" class="surname" type="text" name="surname" value="<% if (data['surname']){ %><%= data['surname'] %><% } %>">
+        <input placeholder="Email" class="email" type="text" name="email" value="<% if (data['email']){ %><%= data['email'] %><% } %>">
+        <textarea placeholder="Description" name="bio" value="<% if (data['bio']){ %><%= data['bio'] %><% } %>"></textarea>
+        <input type="submit" />
+      </form>
+      </div>
   </body>
 </html>

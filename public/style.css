@@ -1,0 +1,116 @@
+.configBg {
+  background-color: rgba(77, 85, 98, 0.1);
+}
+
+h1 {
+  /*font-family: AvenirNext-DemiBold;*/
+  font-size: 22px;
+  color: #4D5562;
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  display: block;
+}
+
+input[type='file'] {
+  display: float;
+  font-size: 0px;
+  color: transparent;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li{
+  height: 25px;
+}
+
+.configMain {
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.15);
+  border-radius: 8px;
+
+  height: 438px;
+  width: 350px;
+
+  padding: 30px;
+
+
+  position:absolute;
+  z-index:15;
+  top:30%;
+  left:50%;
+  margin:-100px 0 0 -195px;
+}
+
+.rectPicBox {
+  height: 80px;
+  width: 100%;
+  margin-top: 30px;
+  display: inline-block;
+}
+
+.rectPicLogo {
+  height: 80px;
+  width: 80px;
+  background: #4D5562;
+  border-radius: 5px;
+  float: left;
+  display: inline-block;
+}
+
+.rectPicLogo img {
+  padding: 23px 23px 23px 23px;
+}
+
+.importPic {
+  display: inline-block;
+  margin-left: 15px;
+  padding: 0;
+}
+.rectPicSum {
+ 
+ background: none;
+}
+
+.importPic a {
+  opacity: 0.4;
+  margin-top: 30px;
+  font-family: AvenirNext-DemiBold;
+  font-size: 13px;
+  color: #4D5562;
+  line-height: 18px;
+}
+
+.name, .surname, .email {
+  width: 290px;
+  height: 33px;
+  
+  position: relative;
+
+  border: 1px solid rgba(77,85,97,0.40);
+  border-radius: 5px;
+ 
+  margin-top: 20px;
+  padding-left: 15px;
+}
+
+
+textarea {
+  width: 290px;
+  height: 66px;
+ 
+  border: 1px solid rgba(77,85,97,0.40);
+  border-radius: 5px;
+ 
+  margin: 20px 0 20px 0;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+}
+/*
+background: #4D5562;
+border-radius: 5px;*/

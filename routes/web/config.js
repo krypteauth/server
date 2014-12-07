@@ -21,7 +21,7 @@ var getConf = function (req, res){
 				cb(null, v)
 			}, function (err, vs){
 
-				res.render('config', {data:vs, error:req.query.error})
+				res.render('config', {data:vs, error:req.query['error']})
 			})
 		}
 	})
@@ -63,15 +63,15 @@ var getQR = function (req, res){
 			res.sendStatus(403)
 		} else {
 			var key = tfa.generate_key({length: 20, google_auth_qr: true})
-			res.render('qr', {qrURL:key.google_auth_qr, key: key.base32, error: req.query.error})
+			res.render('qr', {qrURL:key.google_auth_qr, key: key.base32, error: req.query['error']})
 		}
 	})
 }
 
 var postQR = function (req, res){
 
-	var key = req.body.key,
-		code = req.body.code
+	var key = req.body['key'],
+		code = req.body['code']
 
 	Credential.count(function (err, c){ 
 

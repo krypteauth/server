@@ -1,9 +1,78 @@
-.configBg {
+@font-face {
+  font-family: "AvenirNext-DemiBold";
+  src: url("../fonts/AvenirNext.ttc");
+}
+
+.configBg, .qrBackground, .loginBackground {
   background-color: rgba(77, 85, 98, 0.1);
 }
 
+.loginBackground p {
+  text-align: center;
+  color: rgba(77, 85, 98, 0.4);
+  font-size: 13px;
+  margin-top: 70px;
+}
+
+.miniBoxes {
+  margin-top: 20px;
+  height: 66px;
+  width: 52px;
+
+  border: 1px solid rgba(77,85,97,0.40);
+  border-radius: 5px;
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+  position: relative;
+
+  font-size: 30px;
+  font-family: AvenirNext-DemiBold;
+  color: #4D5562;
+}
+
+
+.miniBoxes:focus {
+  outline-color: rgba(46, 170, 255, 1);
+  outline-width: 2px;
+  outline-style: solid;
+}
+
+.logButton[type='submit'] {
+  
+  border: 1px solid rgba(77,85,97,0.40);
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  bottom: 0;
+  height: 66px;
+  width: 151px;
+  padding: 0;
+  display: inline-block;
+  margin-top: 130px;
+    
+  font-family: AvenirNext-DemiBold;
+  line-height: 18px;
+  font-size: 13px;
+}
+
+.logButton[type='submit']:focus {
+  outline-style: none;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3);
+}
+
+#login {
+  color: #FFFFFF;
+  background: #93CA7F;
+}
+
+#logout {
+  background: rgba(69,54,54,0.20);
+  color: #4D5562;
+  float: right;
+}
+
 h1 {
-  /*font-family: AvenirNext-DemiBold;*/
+  font-family: AvenirNext-DemiBold;
   font-size: 22px;
   color: #4D5562;
   padding: 0;
@@ -28,7 +97,7 @@ li{
   height: 25px;
 }
 
-.configMain {
+.configMain, .qrMain, .loginMain {
   background: #FFFFFF;
   box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.15);
   border-radius: 8px;
@@ -44,6 +113,10 @@ li{
   top:30%;
   left:50%;
   margin:-100px 0 0 -195px;
+}
+
+.loginMain {
+  height: 419px;
 }
 
 .rectPicBox {
@@ -72,7 +145,6 @@ li{
   padding: 0;
 }
 .rectPicSum {
- 
  background: none;
 }
 
@@ -85,7 +157,7 @@ li{
   line-height: 18px;
 }
 
-.name, .surname, .email {
+.name, .surname, .email, .loginCode {
   width: 290px;
   height: 33px;
   
@@ -98,6 +170,9 @@ li{
   padding-left: 15px;
 }
 
+.loginCode {
+  margin-bottom: 20px;
+}
 
 textarea {
   width: 290px;
@@ -111,6 +186,8 @@ textarea {
   padding-bottom: 20px;
   padding-left: 15px;
 }
-/*
-background: #4D5562;
-border-radius: 5px;*/
+
+.qrImage {
+  margin-top: 30px;
+  padding: 0 85px 0 85px;
+}

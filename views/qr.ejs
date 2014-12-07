@@ -2,16 +2,20 @@
 <html>
 <head>
 	<title>QR</title>
+	<link rel="stylesheet" type="text/css" href="../style.css">
 </head>
-<body>
-	<h1>QR config</h1>
-	<img src="<%= qrURL%>"/>
-	<form action="/config/qr" method="POST">
-		<input type="text" name="code"/>
-		<% if (key) { %>
-		<input type="hidden" name="key" value="<%= key %>"/>
-		<% } %>
-		<input type="submit"/>
-	</form>
+<body class="qrBackground">
+	<div class="qrMain">
+		<h1>QR config</h1>
+
+		<img class="qrImage" src="<%= qrURL%>"/>
+		<form action="/config/qr" method="POST">
+			<input placeholder="Enter your login code" class="loginCode" type="text" name="code"/>
+			<% if (key) { %>
+			<input type="hidden" name="key" value="<%= key %>"/>
+			<% } %>
+			<input type="submit"/>
+		</form>
+	</div>
 </body>
 </html>

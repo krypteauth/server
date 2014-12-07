@@ -1,0 +1,17 @@
+name: Krypte
+image: ubuntu-14-04-x64
+min_size: 1gb
+config:
+  #cloud-config
+  users:
+    - name: krypte
+      groups: sudo
+      shell: /bin/bash
+      sudo: ['ALL=(ALL) NOPASSWD:ALL']
+  packages:
+    - git
+    - docker.io
+  runcmd:
+    - cd /home/krypte 
+    - docker pull dockerfile/mongodb
+    - docker pull izqui/krypte

@@ -71,7 +71,7 @@ var getQR = function (req, res){
 var postQR = function (req, res){
 
 	var key = req.body['key'],
-		code = req.body['code1']+req.body['code2']+req.body['code3']+req.body['code4']+req.body['code5']+req.body['code6']
+		code = req.body['code'] || req.body['code1']+req.body['code2']+req.body['code3']+req.body['code4']+req.body['code5']+req.body['code6']
 
 	Credential.count(function (err, c){ 
 

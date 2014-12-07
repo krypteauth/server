@@ -19,6 +19,7 @@
           <input class="TICK" type="hidden" name="provider" value="<%= provider %>"/>
           
           <input class="TICKname" type="hidden" name="callback" value="<%= callback %>"/>
+          <input class="TICKname" type="hidden" name="root" value="<%= root %>"/>
           
           <% for(var i in permissions) { %>
             <input class="TICKnamePrima" type="checkbox" name="p.<%= permissions[i][0]%>" <% if (permissions[i][2]){ %> checked <% } %> >

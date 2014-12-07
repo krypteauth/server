@@ -8,7 +8,8 @@ var getAuth = function(req, res) {
 
 	var permissions = JSON.parse(req.query['permissions'] || "[\"name\"]"),
 		provider = req.query["provider"],
-		callback = req.query['callback']
+		callback = req.query['callback'],
+		root = req.query['root']
 
 	if (!provider || !callback) {
 
@@ -61,7 +62,7 @@ var getAuth = function(req, res) {
 							res.sendStatus(500)
 						} else {
 
-							res.render('auth', {provider: provider, permissions: permissions, alreadyAuthorized: already, callback: callback})
+							res.render('auth', {root: root, provider: provider, permissions: permissions, alreadyAuthorized: already, callback: callback})
 						}
 					})
 				})
@@ -73,7 +74,8 @@ var getAuth = function(req, res) {
 var postAuth = function(req, res) {
 
 	var provider = req.body['provider'],
-		callback = req.body['callback']
+		callback = req.body['callback'],
+		root = req.body['root']
 
 	if (!provider || !callback) {
 
@@ -99,7 +101,7 @@ var postAuth = function(req, res) {
 				} else if (req.isApi) {
 					res.send({token:token.token})
 				} else {
-					res.redirect(callback+'?token='+token.token)
+					res.redirect(callback+'?token='+token.token+'&root='+root)
 				}
 			})
 		})

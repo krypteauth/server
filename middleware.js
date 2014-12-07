@@ -37,7 +37,7 @@ var isApi = function (req, res, next) {
 
 var tokenRequired = function (req, res, next) {
 
-	var token = req.get('X-Api-Token')
+	var token = req.get('X-Api-Token') || req.query['token']
 
 	Token.findOne({token: token}, function (err, tk){
 

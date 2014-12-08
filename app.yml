@@ -13,7 +13,9 @@ config:
     - docker.io
   runcmd:
     - cd /home/krypte 
-    - wget https://raw.githubusercontent.com/authyhack/server/master/setup.sh
+    - wget 
+https://raw.githubusercontent.com/krypteauth/server/master/setup.sh
     - sh setup.sh
-    - wget https://raw.githubusercontent.com/authyhack/server/master/start.sh
+    - wget 
+https://raw.githubusercontent.com/krypteauth/server/master/start.sh
     - sh start.sh
